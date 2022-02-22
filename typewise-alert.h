@@ -1,12 +1,14 @@
 #pragma once
 
-typedef enum {
+typedef enum
+{
   PASSIVE_COOLING,
   HI_ACTIVE_COOLING,
   MED_ACTIVE_COOLING
 } CoolingType;
 
-typedef enum {
+typedef enum
+{
   NORMAL,
   TOO_LOW,
   TOO_HIGH
@@ -15,18 +17,20 @@ typedef enum {
 BreachType inferBreach(double value, double lowerLimit, double upperLimit);
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
 
-typedef enum {
+typedef enum
+{
   TO_CONTROLLER,
   TO_EMAIL
 } AlertTarget;
 
-typedef struct {
+typedef struct
+{
   CoolingType coolingType;
   char brand[48];
 } BatteryCharacter;
 
 bool checkAndAlert(
-  AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
+    AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
 
 bool sendToController(BreachType breachType);
-// bool sendToEmail(BreachType breachType);
+bool sendToEmail(BreachType breachType);
